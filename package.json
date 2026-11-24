@@ -1,0 +1,76 @@
+{
+  "name": "k-clustering",
+  "version": "1.0.0",
+  "description": "Center-based clustering of flat point arrays: k-means (Lloyd, Elkan, Hamerly, spherical, mini-batch, bisecting), k-medians, k-medoids (FasterPAM, PAM, Alternate), k-center and fuzzy c-means, with seeding and validation metrics.",
+  "keywords": [
+    "clustering",
+    "kmeans",
+    "k-means",
+    "k-means++",
+    "lloyd",
+    "elkan",
+    "hamerly",
+    "mini-batch-kmeans",
+    "bisecting-kmeans",
+    "spherical-kmeans",
+    "k-medians",
+    "k-medoids",
+    "pam",
+    "fasterpam",
+    "k-center",
+    "fuzzy-c-means",
+    "voronoi",
+    "centroidal-voronoi",
+    "color-quantization",
+    "silhouette",
+    "typed-array"
+  ],
+  "homepage": "https://github.com/dmnsgn/k-clustering",
+  "bugs": "https://github.com/dmnsgn/k-clustering/issues",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dmnsgn/k-clustering.git"
+  },
+  "funding": [
+    {
+      "type": "individual",
+      "url": "https://paypal.me/dmnsgn"
+    },
+    {
+      "type": "individual",
+      "url": "https://commerce.coinbase.com/checkout/56cbdf28-e323-48d8-9c98-7019e72c97f3"
+    }
+  ],
+  "license": "MIT",
+  "author": "Damien Seguin (https://github.com/dmnsgn)",
+  "sideEffects": false,
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./types/index.d.ts",
+      "default": "./index.js"
+    }
+  },
+  "main": "./index.js",
+  "types": "./types/index.d.ts",
+  "scripts": {
+    "test": "node --experimental-test-coverage test/index.js",
+    "test:watch": "node --watch --experimental-test-coverage test/index.js"
+  },
+  "dependencies": {
+    "typed-array-reserve": "^1.0.0"
+  },
+  "devDependencies": {
+    "canvas-context": "^3.3.1",
+    "es-module-shims": "^2.8.4",
+    "pex-color": "^2.3.0",
+    "pex-random": "^3.0.0",
+    "spatial-partition": "^1.0.0",
+    "tweakpane": "^4.0.5"
+  },
+  "packageManager": "npm@11.12.1",
+  "engines": {
+    "node": ">=26.0.0",
+    "snowdev": ">=3.0.0-alpha.6"
+  }
+}

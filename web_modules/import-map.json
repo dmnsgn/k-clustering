@@ -1,0 +1,15 @@
+{
+  "imports": {
+    "canvas-context": "./canvas-context.js",
+    "es-module-shims": "./es-module-shims.js",
+    "es-module-shims/debug": "./es-module-shims/debug.js",
+    "es-module-shims/wasm": "./es-module-shims/wasm.js",
+    "es-module-shims/typescript-transform": "./es-module-shims/typescript-transform.js",
+    "pex-color": "./pex-color.js",
+    "pex-random": "./pex-random.js",
+    "spatial-partition": "./spatial-partition.js",
+    "tweakpane": "./tweakpane.js",
+    "typed-array-reserve": "./typed-array-reserve.js",
+    "k-clustering": "../index.js"
+  }
+}

@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>k-clustering by Damien Seguin (https://github.com/dmnsgn)</title>
+    <style>
+      :root {
+        --color-dark: #222222;
+        --color-light: #f2f2f2;
+        --color-accent: #95171d;
+      }
+
+      body {
+        margin: 0;
+        overscroll-behavior: none;
+        font-family: sans-serif;
+        color: var(--color-dark);
+        background-color: var(--color-light);
+      }
+
+      main {
+        padding: 0 20px 20px;
+      }
+
+      .Panels {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+        gap: 20px;
+        margin-right: 265px;
+      }
+
+      .Panel {
+        margin: 0;
+      }
+
+      .Panel-canvas {
+        display: block;
+        width: 100%;
+        aspect-ratio: 1;
+        background: repeating-conic-gradient(
+            alpha(from var(--color-dark) / 25%) 0 25%,
+            alpha(from var(--color-light) / 25%) 0 50%
+          )
+          0 0 / 16px 16px;
+      }
+
+      .Panel-caption {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        padding-top: 8px;
+      }
+
+      .Panel-stats {
+        font-family: monospace;
+        font-size: 12px;
+      }
+    </style>
+    <meta content="ie=edge" http-equiv="X-UA-Compatible" />
+  </head>
+  <body>
+    <main>
+      <h1>k-clustering</h1>
+    </main>
+    <script type="module" async src="web_modules/es-module-shims.js"></script>
+    <script type="importmap-shim" src="web_modules/import-map.json"></script>
+
+    <script type="module-shim" src="examples/index.js"></script>
+  </body>
+</html>
