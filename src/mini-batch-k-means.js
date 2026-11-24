@@ -12,11 +12,19 @@ import {
 
 /**
  * @typedef {object} MiniBatchKMeansOptions
- * @property {number} [batchSize=1024] Points sampled, with replacement, per batch. scikit-learn's default.
- * @property {number} [maxIterations=100] Passes over the points: at most `maxIterations * count / batchSize` batches. scikit-learn's default.
- * @property {number} [maxNoImprovement=10] Stop after this many batches without improving the smoothed batch cost. scikit-learn's default. 0 disables it.
- * @property {number} [initSize] Points sampled, with replacement, to initialize the centroids on. Defaults to `3 * batchSize`, or `3 * k` when that is under `k`, as in scikit-learn: on all points, the initialization costs at least O(k n).
- * @property {number} [tolerance=0] Stop when the sum of squared centroid shifts of a batch falls under `tolerance` times the mean variance of the axes. 0 disables it, as scikit-learn's default: a single batch shift is noisy.
+ * @property {number} [batchSize=1024] Points sampled, with replacement, per
+ *   batch. scikit-learn's default.
+ * @property {number} [maxIterations=100] Passes over the points: at most
+ *   `maxIterations * count / batchSize` batches. scikit-learn's default.
+ * @property {number} [maxNoImprovement=10] Stop after this many batches without
+ *   improving the smoothed batch cost. scikit-learn's default. 0 disables it.
+ * @property {number} [initSize] Points sampled, with replacement, to initialize
+ *   the centroids on. Defaults to `3 * batchSize`, or `3 * k` when that is
+ *   under `k`, as in scikit-learn: on all points, the initialization costs at
+ *   least O(k n).
+ * @property {number} [tolerance=0] Stop when the sum of squared centroid shifts
+ *   of a batch falls under `tolerance` times the mean variance of the axes. 0
+ *   disables it, as scikit-learn's default: a single batch shift is noisy.
  */
 
 /**
@@ -61,7 +69,9 @@ export class MiniBatchKMeans extends Clustering {
   #initWeights = new Float64Array(0);
 
   /**
-   * @param {import("./clustering.js").ClusteringOptions & import("./clustering.js").InitializedOptions & MiniBatchKMeansOptions} [options]
+   * @param {import("./clustering.js").ClusteringOptions &
+   *   import("./clustering.js").InitializedOptions &
+   *   MiniBatchKMeansOptions} [options]
    */
   constructor({
     batchSize = 1024,

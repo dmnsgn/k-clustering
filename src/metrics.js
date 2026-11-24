@@ -10,7 +10,8 @@ import { weightOf } from "./utils.js";
 
 /**
  * @typedef {object} InertiaOptions
- * @property {ArrayLike<number>} [weights] Weight of each point. All 1 when omitted.
+ * @property {ArrayLike<number>} [weights] Weight of each point. All 1 when
+ *   omitted.
  */
 
 /**
@@ -182,8 +183,8 @@ export function daviesBouldin(points, labels, { dimension = 3 } = {}) {
 
 /**
  * Calinski–Harabasz index (variance ratio criterion): dispersion between
- * clusters over dispersion within clusters, scaled by their degrees of
- * freedom. Higher is better.
+ * clusters over dispersion within clusters, scaled by their degrees of freedom.
+ * Higher is better.
  *
  * @param {ArrayLike<number>} points Flat array of point components.
  * @param {ArrayLike<number>} labels Cluster of each point.

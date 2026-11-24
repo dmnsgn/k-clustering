@@ -7,7 +7,8 @@ import { resize } from "./utils.js";
 
 /**
  * @typedef {object} KCenterOptions
- * @property {import("./distance.js").Distance} [distance=euclidean] A metric: the 2-approximation relies on the triangle inequality.
+ * @property {import("./distance.js").Distance} [distance=euclidean] A metric:
+ *   the 2-approximation relies on the triangle inequality.
  */
 
 /**
@@ -16,12 +17,12 @@ import { resize } from "./utils.js";
  */
 
 /**
- * k-center clustering: minimize the largest distance of a point to its
- * center, a point of the input, by farthest-first traversal.
+ * K-center clustering: minimize the largest distance of a point to its center,
+ * a point of the input, by farthest-first traversal.
  *
- * Within twice the optimal radius, in O(k n). Covers outliers rather than
- * dense regions: suited to coverage, sampling and spreading colors apart.
- * Point weights don't change the radius and aren't supported.
+ * Within twice the optimal radius, in O(k n). Covers outliers rather than dense
+ * regions: suited to coverage, sampling and spreading colors apart. Point
+ * weights don't change the radius and aren't supported.
  *
  * @augments {Clustering}
  * @see Gonzalez, T. F. (1985). Clustering to minimize the maximum intercluster distance. Theoretical Computer Science, 38, 293–306. https://doi.org/10.1016/0304-3975(85)90224-5
@@ -35,9 +36,7 @@ export class KCenter extends Clustering {
    */
   centers = new Uint32Array(0);
 
-  /**
-   * @param {import("./clustering.js").ClusteringOptions & KCenterOptions} [options]
-   */
+  /** @param {import("./clustering.js").ClusteringOptions & KCenterOptions} [options] */
   constructor({ distance = euclidean, ...options } = {}) {
     super({ ...options, distance });
   }

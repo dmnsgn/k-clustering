@@ -7,20 +7,25 @@ import { gather, resize, weightOf } from "./utils.js";
 
 /**
  * @typedef {object} BisectingKMeansOptions
- * @property {"cost" | "size"} [strategy="cost"] Split the cluster of highest cost or of largest size. scikit-learn's default.
- * @property {number} [trials=1] Bisections tried per split, keeping the one of lowest cost. scikit-learn's default.
- * @property {number} [maxIterations=300] Iterations limit of each bisection. See `KMeans`.
- * @property {number} [tolerance=1e-4] Tolerance of each bisection. See `KMeans`.
+ * @property {"cost" | "size"} [strategy="cost"] Split the cluster of highest
+ *   cost or of largest size. scikit-learn's default.
+ * @property {number} [trials=1] Bisections tried per split, keeping the one of
+ *   lowest cost. scikit-learn's default.
+ * @property {number} [maxIterations=300] Iterations limit of each bisection.
+ *   See `KMeans`.
+ * @property {number} [tolerance=1e-4] Tolerance of each bisection. See
+ *   `KMeans`.
  */
 
 /**
  * @typedef {object} BisectingKMeansFitOptions
- * @property {import("./clustering.js").Weights} [weights] Weight of each point. All 1 when omitted.
+ * @property {import("./clustering.js").Weights} [weights] Weight of each point.
+ *   All 1 when omitted.
  */
 
 /**
- * Bisecting k-means clustering: start from one cluster and split one cluster
- * in two with k-means until there are `k`.
+ * Bisecting k-means clustering: start from one cluster and split one cluster in
+ * two with k-means until there are `k`.
  *
  * Deterministic cluster hierarchy, less sensitive to initialization and faster
  * than k-means with many clusters. Splits aren't refined afterwards: pass
@@ -48,7 +53,9 @@ export class BisectingKMeans extends Clustering {
   #bestCentroids = new Float64Array(0);
 
   /**
-   * @param {import("./clustering.js").ClusteringOptions & import("./clustering.js").InitializedOptions & BisectingKMeansOptions} [options]
+   * @param {import("./clustering.js").ClusteringOptions &
+   *   import("./clustering.js").InitializedOptions &
+   *   BisectingKMeansOptions} [options]
    */
   constructor({
     strategy = "cost",

@@ -7,24 +7,33 @@ import { resize } from "./utils.js";
 
 /**
  * @typedef {object} KMedoidsOptions
- * @property {"fasterpam" | "pam" | "alternate"} [algorithm="fasterpam"] FasterPAM eagerly swaps medoids, as good as PAM in O(n²) per iteration. PAM makes the best swap per iteration, in O(k n²). Alternate updates medoids within fixed clusters, like k-means: faster but worse.
- * @property {import("./init.js").Init} [init=build] Medoids initialization when `fit` isn't given medoids. Reads the dissimilarity matrix with `init.build`.
- * @property {import("./distance.js").Distance} [distance=euclidean] Any dissimilarity, not necessarily a metric.
- * @property {number} [maxIterations=100] The kmedoids package's default, also bounding the swaps of `"pam"` and the partition updates of `"alternate"`.
+ * @property {"fasterpam" | "pam" | "alternate"} [algorithm="fasterpam"]
+ *   FasterPAM eagerly swaps medoids, as good as PAM in O(n²) per iteration. PAM
+ *   makes the best swap per iteration, in O(k n²). Alternate updates medoids
+ *   within fixed clusters, like k-means: faster but worse.
+ * @property {import("./init.js").Init} [init=build] Medoids initialization when
+ *   `fit` isn't given medoids. Reads the dissimilarity matrix with
+ *   `init.build`.
+ * @property {import("./distance.js").Distance} [distance=euclidean] Any
+ *   dissimilarity, not necessarily a metric.
+ * @property {number} [maxIterations=100] The kmedoids package's default, also
+ *   bounding the swaps of `"pam"` and the partition updates of `"alternate"`.
  */
 
 /**
  * @typedef {object} KMedoidsFitOptions
- * @property {ArrayLike<number>} [medoids] Initial medoid point indices. Skips `init`.
- * @property {Float64Array} [dissimilarities] Precomputed `count * count` dissimilarity matrix, row-major. Skips `distance`.
+ * @property {ArrayLike<number>} [medoids] Initial medoid point indices. Skips
+ *   `init`.
+ * @property {Float64Array} [dissimilarities] Precomputed `count * count`
+ *   dissimilarity matrix, row-major. Skips `distance`.
  */
 
 /**
- * k-medoids clustering: minimize the sum of distances of the points to their
+ * K-medoids clustering: minimize the sum of distances of the points to their
  * cluster medoid, a point of the cluster.
  *
- * Works with any dissimilarity and returns actual points. Stores a
- * `count * count` dissimilarity matrix: suited to a few thousand points.
+ * Works with any dissimilarity and returns actual points. Stores a `count *
+ * count` dissimilarity matrix: suited to a few thousand points.
  *
  * Point weights aren't supported.
  *
@@ -67,9 +76,7 @@ export class KMedoids extends Clustering {
   #removalLoss = new Float64Array(0);
   #swapLoss = new Float64Array(0);
 
-  /**
-   * @param {import("./clustering.js").ClusteringOptions & KMedoidsOptions} [options]
-   */
+  /** @param {import("./clustering.js").ClusteringOptions & KMedoidsOptions} [options] */
   constructor({
     algorithm = "fasterpam",
     init = build,

@@ -3,8 +3,8 @@
 import reserve from "typed-array-reserve";
 
 /**
- * Typed array of exactly `length` elements, reusing the storage of `array`
- * when large enough. A new view is only created when the length changes.
+ * Typed array of exactly `length` elements, reusing the storage of `array` when
+ * large enough. A new view is only created when the length changes.
  *
  * @template {Float64Array | Int32Array | Uint32Array} T
  * @param {T} array
@@ -135,8 +135,8 @@ export function normalize(points, count, dimension) {
  * scikit-learn. Points are taken once, farthest first.
  *
  * @param {Float64Array} sizes Cluster weights: 0 when empty.
- * @param {Float64Array} distances Distance of each point to its centroid.
- *   Moved points are set to 0.
+ * @param {Float64Array} distances Distance of each point to its centroid. Moved
+ *   points are set to 0.
  * @param {number} count
  * @param {function(number, number): void} move Called with a point index and
  *   the empty cluster.

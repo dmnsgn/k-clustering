@@ -19,23 +19,28 @@ import { gather, nearestCentroid, resize, weightOf } from "./utils.js";
  * @typedef {object} ClusteringOptions
  * @property {number} [dimension=3] Number of components per point.
  * @property {number} [k=8] Number of clusters. scikit-learn's default.
- * @property {function(): number} [random=Math.random] Uniform random number in [0, 1). Pass a seeded generator for reproducible results.
+ * @property {function(): number} [random=Math.random] Uniform random number in
+ *   [0, 1). Pass a seeded generator for reproducible results.
  */
 
 /**
  * @typedef {object} InitializedOptions
- * @property {import("./init.js").Init} [init=kMeansPlusPlus] Centroids initialization when `fit` isn't given centroids, from the `init` namespace or custom.
+ * @property {import("./init.js").Init} [init=kMeansPlusPlus] Centroids
+ *   initialization when `fit` isn't given centroids, from the `init` namespace
+ *   or custom.
  */
 
 /**
  * @typedef {object} BaseOptions
- * @property {import("./distance.js").Distance} [distance=squaredEuclidean] Distance of the points to the centroids.
+ * @property {import("./distance.js").Distance} [distance=squaredEuclidean]
+ *   Distance of the points to the centroids.
  */
 
 /**
  * @typedef {object} FitOptions
  * @property {Weights} [weights] Weight of each point. All 1 when omitted.
- * @property {ArrayLike<number>} [centroids] Initial centroids, `k * dimension` components. Skips `init`.
+ * @property {ArrayLike<number>} [centroids] Initial centroids, `k * dimension`
+ *   components. Skips `init`.
  */
 
 /**
@@ -144,9 +149,7 @@ export class Clustering {
    */
   _indices = new Uint32Array(0);
 
-  /**
-   * @param {ClusteringOptions & InitializedOptions & BaseOptions} [options]
-   */
+  /** @param {ClusteringOptions & InitializedOptions & BaseOptions} [options] */
   constructor({
     dimension = 3,
     k = 8,
@@ -216,8 +219,8 @@ export class Clustering {
   /**
    * Size the buffers for `points`.
    *
-   * @protected
    * @param {Points} points
+   * @protected
    */
   _prepare(points) {
     const { k, dimension } = this;
@@ -238,11 +241,11 @@ export class Clustering {
   /**
    * Select `k` points with `init` into `indices`.
    *
-   * @protected
    * @param {Points} points
    * @param {Uint32Array} indices
    * @param {import("./init.js").InitOptions} options Distance of the objective
    *   and other options of the clustering.
+   * @protected
    */
   _initIndices(points, indices, options) {
     const { k, dimension, random } = this;
@@ -260,9 +263,9 @@ export class Clustering {
   /**
    * Copy the points at `indices` into `centroids`.
    *
-   * @protected
    * @param {Points} points
    * @param {ArrayLike<number>} indices
+   * @protected
    */
   _setCentroids(points, indices) {
     gather(points, indices, this.k, this.dimension, this.centroids);
@@ -271,11 +274,11 @@ export class Clustering {
   /**
    * Set the initial centroids: the given ones, or selected points.
    *
-   * @protected
    * @param {Points} points
    * @param {FitOptions} options
    * @param {import("./distance.js").Distance} distance Distance of the
    *   objective, for the initialization.
+   * @protected
    */
   _initCentroids(points, { weights, centroids }, distance) {
     const { k, dimension } = this;
@@ -297,14 +300,14 @@ export class Clustering {
    * Alternate assignments and centroid updates (Lloyd iterations) until no
    * label changes or the centroids shift by `tolerance` at most.
    *
-   * @protected
    * @param {number} maxIterations
-   * @param {number} tolerance Absolute tolerance on the sum of squared
-   *   centroid shifts. See `utils.scaledTolerance`.
+   * @param {number} tolerance Absolute tolerance on the sum of squared centroid
+   *   shifts. See `utils.scaledTolerance`.
    * @param {function(boolean): boolean} assign Called with whether an update
    *   follows. Returns whether a label changed.
    * @param {function(): number} update Returns the sum of squared centroid
    *   shifts.
+   * @protected
    */
   _iterate(maxIterations, tolerance, assign, update) {
     let strict = false;
@@ -328,11 +331,11 @@ export class Clustering {
   /**
    * Fill `sizes` from `labels`.
    *
-   * @protected
    * @param {Points} points
    * @param {Weights} [weights]
    * @returns {number} Weighted sum of the distances of the points to their
    *   centroid.
+   * @protected
    */
   _tally(points, weights) {
     const { centroids, labels, sizes, count, dimension, distance } = this;

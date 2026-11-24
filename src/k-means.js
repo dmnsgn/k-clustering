@@ -16,25 +16,36 @@ import {
  *
  * @typedef {object} CentroidIndex
  * @property {function(Float64Array): void} build Index the centroids.
- * @property {function(ArrayLike<number>, number, number, number[]): number[]} queryNearest Called with a position, `k`, a maximum distance and an output array. Returns the indices of the `k` nearest centroids.
+ * @property {function(ArrayLike<number>, number, number, number[]): number[]} queryNearest
+ *   Called with a position, `k`, a maximum distance and an output array. Returns
+ *   the indices of the `k` nearest centroids.
  */
 
 /**
  * @typedef {object} KMeansOptions
- * @property {"lloyd" | "elkan" | "hamerly"} [algorithm="hamerly"] Same clusters, different speed. Hamerly stores 2 bounds per point: fastest in low dimension. Elkan stores `k` bounds per point: fastest in high dimension with many clusters. Lloyd stores none and is the only one using `index`.
- * @property {number} [maxIterations=300] scikit-learn's default.
- * @property {number} [tolerance=1e-4] Stop when the sum of squared centroid shifts falls under `tolerance` times the mean variance of the axes. scikit-learn's default: cuts the tail of vanishing shifts before labels settle. 0 runs until no point changes cluster.
+ * @property {"lloyd" | "elkan" | "hamerly"} [algorithm="hamerly"] Same
+ *   clusters, different speed. Hamerly stores 2 bounds per point: fastest in
+ *   low dimension. Elkan stores `k` bounds per point: fastest in high dimension
+ *   with many clusters. Lloyd stores none and is the only one using `index`.
+ * @property {number} [maxIterations=300] Scikit-learn's default.
+ * @property {number} [tolerance=1e-4] Stop when the sum of squared centroid
+ *   shifts falls under `tolerance` times the mean variance of the axes.
+ *   scikit-learn's default: cuts the tail of vanishing shifts before labels
+ *   settle. 0 runs until no point changes cluster.
  * @property {import("./clustering.js").EmptyClusters} [emptyClusters="farthest"]
- * @property {boolean} [spherical=false] Cluster directions: points and centroids are normalized and compared by cosine distance.
- * @property {CentroidIndex} [index] Lloyd only. Rebuilt over the centroids at each iteration, with the same `dimension`: faster with hundreds of clusters. Equidistant centroids may break ties differently.
+ * @property {boolean} [spherical=false] Cluster directions: points and
+ *   centroids are normalized and compared by cosine distance.
+ * @property {CentroidIndex} [index] Lloyd only. Rebuilt over the centroids at
+ *   each iteration, with the same `dimension`: faster with hundreds of
+ *   clusters. Equidistant centroids may break ties differently.
  */
 
 /**
- * k-means clustering: minimize the sum of squared distances of the points to
+ * K-means clustering: minimize the sum of squared distances of the points to
  * their cluster mean.
  *
- * Best for compact, similarly sized clusters, color quantization and
- * centroidal Voronoi tessellations (Lloyd relaxation).
+ * Best for compact, similarly sized clusters, color quantization and centroidal
+ * Voronoi tessellations (Lloyd relaxation).
  *
  * @augments {Clustering}
  * @see Lloyd, S. P. (1982). Least squares quantization in PCM. IEEE Transactions on Information Theory, 28(2), 129–137. https://doi.org/10.1109/TIT.1982.1056489
@@ -78,7 +89,9 @@ export class KMeans extends Clustering {
   #weights;
 
   /**
-   * @param {import("./clustering.js").ClusteringOptions & import("./clustering.js").InitializedOptions & KMeansOptions} [options]
+   * @param {import("./clustering.js").ClusteringOptions &
+   *   import("./clustering.js").InitializedOptions &
+   *   KMeansOptions} [options]
    */
   constructor({
     algorithm = "hamerly",

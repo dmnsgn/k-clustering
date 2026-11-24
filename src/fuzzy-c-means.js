@@ -6,9 +6,13 @@ import { resize, weightOf } from "./utils.js";
 
 /**
  * @typedef {object} FuzzyCMeansOptions
- * @property {number} [fuzziness=2] Exponent m above 1 weighting the memberships: higher blends clusters more. The usual choice, middle of the [1.5, 2.5] range of Pal and Bezdek (1995).
+ * @property {number} [fuzziness=2] Exponent m above 1 weighting the
+ *   memberships: higher blends clusters more. The usual choice, middle of the
+ *   [1.5, 2.5] range of Pal and Bezdek (1995).
  * @property {number} [maxIterations=150] The fuzzy-c-means package's default.
- * @property {number} [tolerance=1e-5] Stop when the Frobenius norm of the memberships change falls under it, as in scikit-fuzzy. The fuzzy-c-means package's default.
+ * @property {number} [tolerance=1e-5] Stop when the Frobenius norm of the
+ *   memberships change falls under it, as in scikit-fuzzy. The fuzzy-c-means
+ *   package's default.
  */
 
 /**
@@ -47,7 +51,9 @@ export class FuzzyCMeans extends Clustering {
   #row = new Float64Array(0);
 
   /**
-   * @param {import("./clustering.js").ClusteringOptions & import("./clustering.js").InitializedOptions & FuzzyCMeansOptions} [options]
+   * @param {import("./clustering.js").ClusteringOptions &
+   *   import("./clustering.js").InitializedOptions &
+   *   FuzzyCMeansOptions} [options]
    */
   constructor({
     fuzziness = 2,

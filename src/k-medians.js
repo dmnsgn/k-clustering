@@ -12,12 +12,15 @@ import {
 /**
  * @typedef {object} KMediansOptions
  * @property {number} [maxIterations=300] As `KMeans`.
- * @property {number} [tolerance=0] Stop when the sum of squared centroid shifts falls under `tolerance` times the mean variance of the axes. 0 runs until no point changes cluster: medians move between point components, without the tail of vanishing shifts of means.
+ * @property {number} [tolerance=0] Stop when the sum of squared centroid shifts
+ *   falls under `tolerance` times the mean variance of the axes. 0 runs until
+ *   no point changes cluster: medians move between point components, without
+ *   the tail of vanishing shifts of means.
  * @property {import("./clustering.js").EmptyClusters} [emptyClusters="farthest"]
  */
 
 /**
- * k-medians clustering: minimize the sum of Manhattan distances of the points
+ * K-medians clustering: minimize the sum of Manhattan distances of the points
  * to their cluster median, taken on each axis.
  *
  * Less sensitive to outliers than k-means.
@@ -42,7 +45,9 @@ export class KMedians extends Clustering {
   #weights;
 
   /**
-   * @param {import("./clustering.js").ClusteringOptions & import("./clustering.js").InitializedOptions & KMediansOptions} [options]
+   * @param {import("./clustering.js").ClusteringOptions &
+   *   import("./clustering.js").InitializedOptions &
+   *   KMediansOptions} [options]
    */
   constructor({
     maxIterations = 300,

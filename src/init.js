@@ -9,18 +9,21 @@ import { resize, weightOf } from "./utils.js";
  *
  * @typedef {object} InitOptions
  * @property {number} [dimension=3] Number of components per point.
- * @property {function(): number} [random=Math.random] Uniform random number in [0, 1).
+ * @property {function(): number} [random=Math.random] Uniform random number in
+ *   [0, 1).
  * @property {Uint32Array} [indices] Receives the selected point indices. Reuse
  *   it to avoid allocating.
  * @property {ArrayLike<number>} [weights] Weight of each point.
- * @property {import("./distance.js").Distance} [distance] Distance of the clustering objective.
- * @property {Float64Array} [distances] Scratch buffer of at least one element per point.
+ * @property {import("./distance.js").Distance} [distance] Distance of the
+ *   clustering objective.
+ * @property {Float64Array} [distances] Scratch buffer of at least one element
+ *   per point.
  */
 
 /**
  * Select `k` distinct points to initialize a clustering, such as
- * `kMeansPlusPlus`. Wrap one to set its own options:
- * `(points, k, options) => kMeansPlusPlus(points, k, { ...options, localTrials: 1 })`.
+ * `kMeansPlusPlus`. Wrap one to set its own options: `(points, k, options) =>
+ * kMeansPlusPlus(points, k, { ...options, localTrials: 1 })`.
  *
  * @callback Init
  * @param {ArrayLike<number>} points Flat array of point components.
@@ -62,8 +65,12 @@ export function randomPoints(
 
 /**
  * @typedef {object} KMeansPlusPlusOptions
- * @property {import("./distance.js").Distance} [distance=squaredEuclidean] Points are sampled proportionally to their distance to the nearest selected point: squared Euclidean for k-means, Manhattan for k-medians.
- * @property {number} [localTrials] Candidates sampled per point, keeping the one reducing the potential the most. Defaults to 2 + ln(k) like the authors' and scikit-learn's implementations. 1 is the paper's algorithm.
+ * @property {import("./distance.js").Distance} [distance=squaredEuclidean]
+ *   Points are sampled proportionally to their distance to the nearest selected
+ *   point: squared Euclidean for k-means, Manhattan for k-medians.
+ * @property {number} [localTrials] Candidates sampled per point, keeping the
+ *   one reducing the potential the most. Defaults to 2 + ln(k) like the
+ *   authors' and scikit-learn's implementations. 1 is the paper's algorithm.
  */
 
 /**
@@ -166,7 +173,8 @@ export function kMeansPlusPlus(
  * @typedef {object} FarthestFirstOptions
  * @property {import("./distance.js").Distance} [distance=squaredEuclidean]
  * @property {number} [first] Index of the first point. Random when omitted.
- * @property {Int32Array} [labels] Receives the position in `indices` of the nearest selected point of each point.
+ * @property {Int32Array} [labels] Receives the position in `indices` of the
+ *   nearest selected point of each point.
  */
 
 /**
@@ -232,12 +240,13 @@ let buildColumn = new Float64Array(0);
 /**
  * @typedef {object} BuildOptions
  * @property {import("./distance.js").Distance} [distance=euclidean]
- * @property {ArrayLike<number>} [dissimilarities] Precomputed `count * count` dissimilarity matrix, row-major. Skips `distance`.
+ * @property {ArrayLike<number>} [dissimilarities] Precomputed `count * count`
+ *   dissimilarity matrix, row-major. Skips `distance`.
  */
 
 /**
- * Pick `k` points greedily, each reducing the sum of distances of the points
- * to their nearest selected one the most (PAM BUILD), in O(k n²).
+ * Pick `k` points greedily, each reducing the sum of distances of the points to
+ * their nearest selected one the most (PAM BUILD), in O(k n²).
  *
  * @param {ArrayLike<number>} points Flat array of point components.
  * @param {number} k
